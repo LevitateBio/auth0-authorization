@@ -227,7 +227,7 @@ export class AuthorizationClient {
     const tokenPayload = decode(this._accessToken) as {[key: string]: string };
     const expirationSeconds = parseInt(tokenPayload.exp);
     const nowSeconds = Date.now().valueOf() / 1000;
-    if (nowSeconds < expirationSeconds) {
+    if (nowSeconds >= expirationSeconds) {
       return _getAccessToken();
     }
     // Use cached access token
