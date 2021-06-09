@@ -26,13 +26,23 @@ export function getGroupMembers(extensionUrl: string, accessToken: string) {
       ...defaultOptions,
       ...options
     };
-    return get({
-      accessToken,
-      url: `${extensionUrl}/groups/${input.groupId}/members`,
-      queryParams: {
-        page: `${options.page}`,
-        per_page: `${options.perPage}`,
-      }
-    });
+    const getPaged: any = function(page: any) {
+      return get({
+        accessToken,
+        url: `${extensionUrl}/groups/${input.groupId}/members`,
+        queryParams: {
+          page: `${options.page}`,
+          per_page: `${options.perPage}`,
+          include_totals: 'true'
+        }
+      }).then((result: any) => {
+        if (result.total > result.start + result.limit) {
+            return getPaged(page + 1).then((p: any) => result.users.concat(p));
+        }
+        return result.users;
+      });
+    };
+    return getPaged(0);
+
   }
 }
