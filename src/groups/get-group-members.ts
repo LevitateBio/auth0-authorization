@@ -16,7 +16,7 @@ export interface Options {
 }
 
 const defaultOptions: Options = {
-  page: 1,
+  page: 0,
   perPage: 25,
 };
 
