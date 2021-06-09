@@ -1,0 +1,39 @@
+---
+kind: pipeline
+type: kubernetes
+name: default
+
+concurrency:
+  limit: 1
+
+steps:
+  - name: test
+    image: node:10.15
+    environment:
+      AUTH0_DOMAIN:
+        from_secret: AUTH0_DOMAIN
+      AUTH0_API_CLIENT_ID:
+        from_secret: AUTH0_API_CLIENT_ID
+      AUTH0_API_CLIENT_SECRET:
+        from_secret: AUTH0_API_CLIENT_SECRET
+      AUTH0_AUTHORIZATION_EXTENSION_URL:
+        from_secret: AUTH0_AUTHORIZATION_EXTENSION_URL
+    commands:
+    - npm install
+    - AUTH0_DOMAIN=$AUTH0_DOMAIN AUTH0_API_CLIENT_ID=$AUTH0_API_CLIENT_ID AUTH0_API_CLIENT_SECRET=$AUTH0_API_CLIENT_SECRET
+    - AUTH0_AUTHORIZATION_EXTENSION_URL=$AUTH0_AUTHORIZATION_EXTENSION_URL
+    - npm test
+
+  - name: build + publish
+    image: node:10.15
+    commands:
+    - npm run build
+    - npm publish --access public
+    when:
+      branch:
+      - master
+
+trigger:
+  event:
+    include:
+    - push
