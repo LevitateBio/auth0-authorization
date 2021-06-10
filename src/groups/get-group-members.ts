@@ -31,12 +31,11 @@ export function getGroupMembers(extensionUrl: string, accessToken: string) {
         accessToken,
         url: `${extensionUrl}/groups/${input.groupId}/members`,
         queryParams: {
-          page: `${options.page}`,
-          per_page: `${options.perPage}`,
-          include_totals: 'true'
+          page: `${page}`,
+          per_page: `${options.perPage}`
         }
       }).then((result: any) => {
-        if (result.total > result.start + result.limit) {
+        if (result.total > page) {
             return getPaged(page + 1).then((p: any) => result.users.concat(p));
         }
         return result.users;
