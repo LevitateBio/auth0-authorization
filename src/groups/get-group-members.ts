@@ -35,7 +35,7 @@ export function getGroupMembers(extensionUrl: string, accessToken: string) {
           per_page: `${options.perPage}`
         }
       }).then((result: any) => {
-        const total_pages = (result.total / options.perPage).toFixed(0);
+        const total_pages = Math.ceil(result.total / options.perPage);
         if (total_pages > page + 1) {
             return getPaged(page + 1).then((p: any) => result.users.concat(p));
         }
