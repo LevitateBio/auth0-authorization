@@ -30,8 +30,8 @@
     "pretestbuild": "rm -rf test",
     "testbuild": "tsc -p tsconfig.test.json --outDir test",
     "testbuild:watch": "tsc -p tsconfig.test.json --outDir test -w",
-    "unit": "nyc ava test/**",
-    "unit:watch": "ava test/** -w",
+    "unit": "nyc ava test/**/*.spec.js",
+    "unit:watch": "ava test/**/*.spec.js -w",
     "test": "run-s testbuild unit",
     "test:watch": "run-p testbuild:watch unit:watch"
   },

@@ -1,7 +1,7 @@
 
 import test from 'ava';
 import { AuthorizationClient as AuthorizationClientClass, IAuthorizationClientOptions } from './authorization-client';
-import { getEnvironmentVariable } from './common/get-environment-variable';
+import { getEnvironmentVariable } from '../common/get-environment-variable';
 const proxyquire = require('proxyquire').noPreserveCache();
 
 test('AuthorizationClient.getAccessToken should cache access token', async (t) => {
