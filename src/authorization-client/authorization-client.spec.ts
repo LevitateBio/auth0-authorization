@@ -45,7 +45,7 @@ test('AuthorizationClient.getGroupMembers should get group members', async (t) =
 
 
 // Returns a new instance of AuthorizationClient and a counter counting the number of times getAccessToken is called.
-export function setupTest() {
+function setupTest() {
   const dummyAccessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJFWXlNVEV3UWtFNVJrVTVNVVU1TXpaQ1JFRkdNMEl3UTBNM05EY3hNRFExUXpZd01USTJNZyJ9.eyJpc3MiOiJ4eHgiLCJzdWIiOiJ4eHgiLCJhdWQiOiJ4eHgiLCJpYXQiOjE1NTg1MDQ2NjMsImV4cCI6MTU1ODUwNDY2Mywibm9uY2UiOiJYWFgifQ.iPNiKdnMfuSz6GD83FfKqB2dMmvlrFtCjDiQ7pgN0Qpyk1XyO0z72ZMG88yH1OGZCGswdw-f8KRjOZ5lSLeiXfePjOYGkPT9izBjYJtzzOBAQ4mx936BwFK8NB204AhhqpTsC7JYsw4vm7r1EjUcN1fMmCSAqxOrPNmq0R9lOiN_aSkQdJlCcqTkUlEorufqjRr_uUbNKHHcx93PhFKezTAbiIOA910yUFbCiDLIYwTkmdbkFZSyeDA12Pl9ZFW9v61k3azmH9AhyDc6QKPLb92CX7k7ZKnJw0GQ5wf5j2wfxtYjRGz7CPNwNXPVUJu67w7HuBCDT8unI-rO7W2okA';
   // Track number of calls to mocked getAccessToken
   const counter = { count: 0 };
