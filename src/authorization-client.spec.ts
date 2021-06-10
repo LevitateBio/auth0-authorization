@@ -24,6 +24,25 @@ test('AuthorizationClient.getAccessToken should wait for pending calls to finish
   t.is(counter.count, 1);
 });
 
+test('AuthorizationClient.getGroupMembers should get group members', async (t) => {
+  const { authorizationClient, counter } = setupTest();
+  // Although these requests are initiated at the same time,
+  // they should execute one at a time so that all calls hit
+  // the cache after the first call.
+  const response = await authorizationClient.getGroupMembers({
+    groupId: '7ca3a45c-ab8a-4cde-a1af-ccb489642c12',
+  },
+  {
+    page: 0,
+    perPage: 25
+  });
+  t.log(response);
+  t.truthy(response.users);
+  // Testing that pagination works
+  t.true(response.users!.length > 25);
+});
+
+
 // Returns a new instance of AuthorizationClient and a counter counting the number of times getAccessToken is called.
 function setupTest() {
   const dummyAccessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJFWXlNVEV3UWtFNVJrVTVNVVU1TXpaQ1JFRkdNMEl3UTBNM05EY3hNRFExUXpZd01USTJNZyJ9.eyJpc3MiOiJ4eHgiLCJzdWIiOiJ4eHgiLCJhdWQiOiJ4eHgiLCJpYXQiOjE1NTg1MDQ2NjMsImV4cCI6MTU1ODUwNDY2Mywibm9uY2UiOiJYWFgifQ.iPNiKdnMfuSz6GD83FfKqB2dMmvlrFtCjDiQ7pgN0Qpyk1XyO0z72ZMG88yH1OGZCGswdw-f8KRjOZ5lSLeiXfePjOYGkPT9izBjYJtzzOBAQ4mx936BwFK8NB204AhhqpTsC7JYsw4vm7r1EjUcN1fMmCSAqxOrPNmq0R9lOiN_aSkQdJlCcqTkUlEorufqjRr_uUbNKHHcx93PhFKezTAbiIOA910yUFbCiDLIYwTkmdbkFZSyeDA12Pl9ZFW9v61k3azmH9AhyDc6QKPLb92CX7k7ZKnJw0GQ5wf5j2wfxtYjRGz7CPNwNXPVUJu67w7HuBCDT8unI-rO7W2okA';
