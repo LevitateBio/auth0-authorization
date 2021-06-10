@@ -25,13 +25,26 @@ export function getUsers(authorizationExtensionUrl: string, accessToken: string)
       ...getUsersDefaultOptions,
       ...options
     };
-    return get({
-      accessToken,
-      url: `${authorizationExtensionUrl}/users`,
-      queryParams: {
-        page: `${options.page}`,
-        per_page: `${options.perPage}`,
-      }
-    });
+
+    const getPaged: any = function(page: number) {
+      return get({
+        accessToken,
+        url: `${authorizationExtensionUrl}/users`,
+        queryParams: {
+          page: `${options.page}`,
+          per_page: `${options.perPage}`,
+        }
+      }).then((result: any) => {
+        const total_pages = Math.ceil(result.total / options.perPage);
+        if (total_pages > page + 1) {
+          return getPaged(page + 1).then((p: any) => {
+            result.users = result.users.concat(p.users);
+            return result;
+          })
+        }
+        return result;
+      });
+    };
+    return getPaged(0);
   }
 }
