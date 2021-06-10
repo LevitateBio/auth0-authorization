@@ -38,7 +38,7 @@ export function getGroupMembers(extensionUrl: string, accessToken: string) {
         if (result.total > page) {
             return getPaged(page + 1).then((p: any) => result.users.concat(p));
         }
-        return result.users;
+        return result;
       });
     };
     return getPaged(0);
