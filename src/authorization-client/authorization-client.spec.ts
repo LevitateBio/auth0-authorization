@@ -37,7 +37,6 @@ test('AuthorizationClient.getGroupMembers should get group members', async (t) =
     page: 0,
     perPage: 25
   });
-  t.log(response);
   t.truthy(response.users);
   // Testing that pagination works
   t.true(response.users!.length > 25);
