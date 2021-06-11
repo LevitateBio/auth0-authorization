@@ -1,45 +1,45 @@
 import { decode } from 'jsonwebtoken';
-import { getAccessToken } from './common/get-access-token';
+import { getAccessToken } from '../common/get-access-token';
 
 // Groups
-import { getGroups } from './groups/get-groups';
-import { getGroup, Input as IGetGroupInput } from './groups/get-group';
-import { createGroup, Input as ICreateGroupInput } from './groups/create-group';
-import { deleteGroup, Input as IDeleteGroupInput } from './groups/delete-group';
-import { updateGroup, Input as IUpdateGroupInput } from './groups/update-group';
-import { getGroupMembers, Input as IGetGroupMembersInput, Options as IGetGroupMembersOptions } from './groups/get-group-members';
-import { addGroupMembers, Input as IAddGroupMembersInput } from './groups/add-group-members';
-import { deleteGroupMembers, Input as IDeleteGroupMembersInput } from './groups/delete-group-members';
-import { getNestedGroupMembers, Input as IGetNestedGroupMembersInput, Options as IGetNestedGroupMembersOptions } from './groups/get-nested-group-members';
-import { getNestedGroups, Input as IGetNestedGroupsInput } from './groups/get-nested-groups';
-import { addNestedGroups, Input as IAddNestedGroupsInput } from './groups/add-nested-groups';
-import { deleteNestedGroups, Input as IDeleteNestedGroupsInput } from './groups/delete-nested-groups';
-import { getGroupRoles, Input as IGetGroupRolesInput } from './groups/get-group-roles';
-import { addGroupRoles, Input as IAddGroupRolesInput } from './groups/add-group-roles';
-import { deleteGroupRoles, Input as IDeleteGroupRolesInput } from './groups/delete-group-roles';
-import { getNestedGroupRoles, Input as IGetNestedGroupRolesInput } from './groups/get-nested-group-roles';
+import { getGroups } from '../groups/get-groups';
+import { getGroup, Input as IGetGroupInput } from '../groups/get-group';
+import { createGroup, Input as ICreateGroupInput } from '../groups/create-group';
+import { deleteGroup, Input as IDeleteGroupInput } from '../groups/delete-group';
+import { updateGroup, Input as IUpdateGroupInput } from '../groups/update-group';
+import { getGroupMembers, Input as IGetGroupMembersInput, Options as IGetGroupMembersOptions } from '../groups/get-group-members';
+import { addGroupMembers, Input as IAddGroupMembersInput } from '../groups/add-group-members';
+import { deleteGroupMembers, Input as IDeleteGroupMembersInput } from '../groups/delete-group-members';
+import { getNestedGroupMembers, Input as IGetNestedGroupMembersInput, Options as IGetNestedGroupMembersOptions } from '../groups/get-nested-group-members';
+import { getNestedGroups, Input as IGetNestedGroupsInput } from '../groups/get-nested-groups';
+import { addNestedGroups, Input as IAddNestedGroupsInput } from '../groups/add-nested-groups';
+import { deleteNestedGroups, Input as IDeleteNestedGroupsInput } from '../groups/delete-nested-groups';
+import { getGroupRoles, Input as IGetGroupRolesInput } from '../groups/get-group-roles';
+import { addGroupRoles, Input as IAddGroupRolesInput } from '../groups/add-group-roles';
+import { deleteGroupRoles, Input as IDeleteGroupRolesInput } from '../groups/delete-group-roles';
+import { getNestedGroupRoles, Input as IGetNestedGroupRolesInput } from '../groups/get-nested-group-roles';
 // Roles
-import { getRoles } from './roles/get-roles';
-import { getRole, Input as IGetRoleInput } from './roles/get-role';
-import { createRole, Input as ICreateRoleInput } from './roles/create-role';
-import { updateRole, Input as IUpdateRoleInput } from './roles/update-role';
-import { deleteRole, Input as IDeleteRoleInput } from './roles/delete-role';
+import { getRoles } from '../roles/get-roles';
+import { getRole, Input as IGetRoleInput } from '../roles/get-role';
+import { createRole, Input as ICreateRoleInput } from '../roles/create-role';
+import { updateRole, Input as IUpdateRoleInput } from '../roles/update-role';
+import { deleteRole, Input as IDeleteRoleInput } from '../roles/delete-role';
 // Permissions
-import { getPermissions } from './permissions/get-permissions';
-import { getPermission, Input as IGetPermissionInput } from './permissions/get-permission';
-import { createPermission, Input as ICreatePermissionInput } from './permissions/create-permission';
-import { updatePermission, Input as IUpdatePermissionInput } from './permissions/update-permission';
-import { deletePermission, Input as IDeletePermissionInput } from './permissions/delete-permission';
+import { getPermissions } from '../permissions/get-permissions';
+import { getPermission, Input as IGetPermissionInput } from '../permissions/get-permission';
+import { createPermission, Input as ICreatePermissionInput } from '../permissions/create-permission';
+import { updatePermission, Input as IUpdatePermissionInput } from '../permissions/update-permission';
+import { deletePermission, Input as IDeletePermissionInput } from '../permissions/delete-permission';
 // Users
-import { getUsers, Options as IGetUsersOptions } from './users/get-users';
-import { getUser, Input as IGetUserInput } from './users/get-user';
-import { getUserGroups, Input as IGetUserGroupsInput, Options as IGetUserGroupsOptions } from './users/get-user-groups';
-import { addUserToGroups, Input as IAddUserToGroupsInput } from './users/add-user-to-groups';
-import { calculateGroupMemberships, Input as ICalculateGroupMembershipsInput } from './users/calculate-group-memberships';
-import { getUserRoles, Input as IGetUserRolesInput } from './users/get-user-roles';
-import { addUserToRoles, Input as IAddUserToRolesInput } from './users/add-user-to-roles';
-import { removeUserFromRoles, Input as IRemoveUserFromRolesInput } from './users/remove-user-from-roles';
-import { calculateRoles, Input as ICalculateRolesInput } from './users/calculate-roles';
+import { getUsers, Options as IGetUsersOptions } from '../users/get-users';
+import { getUser, Input as IGetUserInput } from '../users/get-user';
+import { getUserGroups, Input as IGetUserGroupsInput, Options as IGetUserGroupsOptions } from '../users/get-user-groups';
+import { addUserToGroups, Input as IAddUserToGroupsInput } from '../users/add-user-to-groups';
+import { calculateGroupMemberships, Input as ICalculateGroupMembershipsInput } from '../users/calculate-group-memberships';
+import { getUserRoles, Input as IGetUserRolesInput } from '../users/get-user-roles';
+import { addUserToRoles, Input as IAddUserToRolesInput } from '../users/add-user-to-roles';
+import { removeUserFromRoles, Input as IRemoveUserFromRolesInput } from '../users/remove-user-from-roles';
+import { calculateRoles, Input as ICalculateRolesInput } from '../users/calculate-roles';
 
 export class AuthorizationClient {
   private _options: IAuthorizationClientOptions;

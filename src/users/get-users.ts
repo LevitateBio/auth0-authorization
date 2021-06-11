@@ -1,4 +1,4 @@
-import { get } from '../common/request';
+import { getPages } from '../common/get-pages';
 import { IAuth0AuthorizationApiUser } from '../interfaces';
 
 export interface Response {
@@ -25,13 +25,6 @@ export function getUsers(authorizationExtensionUrl: string, accessToken: string)
       ...getUsersDefaultOptions,
       ...options
     };
-    return get({
-      accessToken,
-      url: `${authorizationExtensionUrl}/users`,
-      queryParams: {
-        page: `${options.page}`,
-        per_page: `${options.perPage}`,
-      }
-    });
+    return getPages(`${authorizationExtensionUrl}/users`, accessToken, options);
   }
 }
