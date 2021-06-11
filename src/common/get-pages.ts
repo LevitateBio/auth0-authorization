@@ -25,5 +25,5 @@ export function getPages(url: string, accessToken: string, options: Options) {
       return result;
     });
   };
-  return getPaged(0);
+  return getPaged(1);
 }

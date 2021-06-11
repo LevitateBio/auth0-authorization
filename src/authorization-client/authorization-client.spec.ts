@@ -34,9 +34,12 @@ test('AuthorizationClient.getGroupMembers should get group members', async (t) =
     page: 0,
     perPage: 25
   });
+  const uniqueUsers = new Set(response.users);
+  t.log(response.users);
   t.truthy(response.users);
   // Testing that pagination works
   t.true(response.users!.length > 25);
+  t.true(uniqueUsers.size == response.users!.length);
 });
 
 
