@@ -16,7 +16,7 @@ export function getPages(url: string, accessToken: string, options: Options) {
       }
     }).then((result: any) => {
       const total_pages = Math.ceil(result.total / options.perPage);
-      if (total_pages > page + 1) {
+      if (total_pages > page) {
         return getPaged(page + 1).then((p: any) => {
           result.users = result.users.concat(p.users);
           return result;
