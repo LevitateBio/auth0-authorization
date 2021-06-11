@@ -27,9 +27,6 @@ const proxyquire = require('proxyquire').noPreserveCache();
 
 test('AuthorizationClient.getGroupMembers should get group members', async (t) => {
   const { authorizationClient, counter } = setupTest();
-  // Although these requests are initiated at the same time,
-  // they should execute one at a time so that all calls hit
-  // the cache after the first call.
   const response = await authorizationClient.getGroupMembers({
     groupId: '7ca3a45c-ab8a-4cde-a1af-ccb489642c12',
   },
