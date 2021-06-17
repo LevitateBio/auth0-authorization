@@ -43,8 +43,8 @@ test('AuthorizationClient.getGroupMembers should get group members', async (t) =
 
 test('AuthorizationClient.getConnections should get connections', async (t) => {
   const { authorizationClient, counter } = setupTest();
-  const response = await authorizationClient.getConnections();
-  t.truthy(response.connections);
+  const connections = await authorizationClient.getConnections();
+  t.truthy(connections);
 });
 
 
