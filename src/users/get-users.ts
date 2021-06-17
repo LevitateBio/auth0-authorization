@@ -25,6 +25,6 @@ export function getUsers(authorizationExtensionUrl: string, accessToken: string)
       ...getUsersDefaultOptions,
       ...options
     };
-    return getPages(`${authorizationExtensionUrl}/users`, accessToken, options);
+    return getPages(`${authorizationExtensionUrl}/users`, accessToken, options, 'users');
   }
 }

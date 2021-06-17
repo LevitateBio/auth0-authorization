@@ -37,3 +37,9 @@ export interface IAuth0AuthorizationApiUser {
   last_login: string; // '2018-06-01T22:34:36.240Z',
   logins_count: number; // integer
 }
+
+export interface IAuth0AuthorizationApiConnection {
+  name: string;
+  display_name: string;
+  id: string;
+}

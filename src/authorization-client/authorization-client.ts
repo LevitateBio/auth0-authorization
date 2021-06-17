@@ -40,6 +40,8 @@ import { getUserRoles, Input as IGetUserRolesInput } from '../users/get-user-rol
 import { addUserToRoles, Input as IAddUserToRolesInput } from '../users/add-user-to-roles';
 import { removeUserFromRoles, Input as IRemoveUserFromRolesInput } from '../users/remove-user-from-roles';
 import { calculateRoles, Input as ICalculateRolesInput } from '../users/calculate-roles';
+// Connections
+import { getConnections } from '../connections/get-connections';
 
 export class AuthorizationClient {
   private _options: IAuthorizationClientOptions;
@@ -198,6 +200,11 @@ export class AuthorizationClient {
 
   public async calculateRoles(input: ICalculateRolesInput) {
     return calculateRoles(this._options.extensionUrl, await this._getAccessToken())(input);
+  }
+
+  // Connections
+  public async getConnections() {
+    return getConnections(this._options.extensionUrl, await this._getAccessToken())();
   }
 
   // Return cached access token unless it does not exist or is expired.
