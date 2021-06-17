@@ -1,10 +1,5 @@
 import { getPages } from '../common/get-pages';
-import { IAuth0AuthorizationApiUser } from '../interfaces';
-
-export interface Response {
-  connections: IAuth0AuthorizationApiUser[];
-  total: number;
-}
+import { IAuth0AuthorizationApiConnection } from '../interfaces';
 
 export interface Options {
   page: number;
@@ -17,7 +12,7 @@ const defaultOptions: Options = {
 };
 
 export function getConnections(extensionUrl: string, accessToken: string) {
-  return (options?: Options): Promise<Response> => {
+  return (options?: Options): Promise<IAuth0AuthorizationApiConnection[]> => {
     options = {
       ...defaultOptions,
       ...options
