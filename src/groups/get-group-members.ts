@@ -26,6 +26,6 @@ export function getGroupMembers(extensionUrl: string, accessToken: string) {
       ...defaultOptions,
       ...options
     };
-    return getPages(`${extensionUrl}/groups/${input.groupId}/members`, accessToken, options);
+    return getPages(`${extensionUrl}/groups/${input.groupId}/members`, accessToken, options, 'users');
   }
 }
