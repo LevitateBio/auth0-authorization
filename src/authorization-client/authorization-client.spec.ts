@@ -47,6 +47,11 @@ test('AuthorizationClient.getConnections should get connections', async (t) => {
   t.truthy(connections);
 });
 
+test('AuthorizationClient.getGroups should get groups', async (t) => {
+  const { authorizationClient, counter } = setupTest();
+  const response = await authorizationClient.getGroups();
+  t.truthy(response.groups);
+});
 
 // Returns a new instance of AuthorizationClient and a counter counting the number of times getAccessToken is called.
 function setupTest() {
