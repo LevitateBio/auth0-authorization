@@ -42,6 +42,7 @@ import { removeUserFromRoles, Input as IRemoveUserFromRolesInput } from '../user
 import { calculateRoles, Input as ICalculateRolesInput } from '../users/calculate-roles';
 // Connections
 import { getConnections } from '../connections/get-connections';
+import { disableConnection, Input as IDisableConnectionInput } from '../connections/disable-connection';
 
 export class AuthorizationClient {
   private _options: IAuthorizationClientOptions;
@@ -205,6 +206,10 @@ export class AuthorizationClient {
   // Connections
   public async getConnections() {
     return getConnections(this._options.extensionUrl, await this._getAccessToken())();
+  }
+
+  public async disableConnection(input: IDisableConnectionInput) {
+    return disableConnection(this._options.extensionUrl, await this._getAccessToken())(input);
   }
 
   // Return cached access token unless it does not exist or is expired.
