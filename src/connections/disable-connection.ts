@@ -11,7 +11,7 @@ export function disableConnection(extensionUrl: string, accessToken: string) {
       accessToken,
       url: `${extensionUrl}/connections/${input.connectionId}`,
       body: {
-        "enabled_clients": [""]
+        "enabled_clients": []
       }
     });
   }
