@@ -54,29 +54,29 @@ test('AuthorizationClient.getGroups should get groups', async (t) => {
   t.truthy(response.groups);
 });
 
-test('AuthorizationClient.enableConnection should enable application for specified connection', async (t) => {
-  const testConnectionId = 'con_RuQniJyhsNJhzggX';
-  const defaultAppId = 'ZEBLdpFpHXg55cejEFEKphF03fo9-zJ8'
-  const { authorizationClient, counter } = setupTest();
-  const response = await authorizationClient.enableConnection(
-    {
-      connectionId: testConnectionId,
-      applicationId: defaultAppId
-    }
-  );
-  t.truthy(response.enabled_clients.length);
-});
+// test('AuthorizationClient.enableConnection should enable application for specified connection', async (t) => {
+//   const testConnectionId = 'con_RuQniJyhsNJhzggX';
+//   const defaultAppId = 'ZEBLdpFpHXg55cejEFEKphF03fo9-zJ8'
+//   const { authorizationClient, counter } = setupTest();
+//   const response = await authorizationClient.enableConnection(
+//     {
+//       connectionId: testConnectionId,
+//       applicationId: defaultAppId
+//     }
+//   );
+//   t.truthy(response.enabled_clients.length);
+// });
 
-test('AuthorizationClient.disableConnection should disable all applications for specified connection', async (t) => {
-  const testConnectionId = 'con_RuQniJyhsNJhzggX';
-  const { authorizationClient, counter } = setupTest();
-  const response = await authorizationClient.disableConnection(
-    {
-      connectionId: testConnectionId
-    }
-  );
-  t.truthy(!response.enabled_clients.length);
-});
+// test('AuthorizationClient.disableConnection should disable all applications for specified connection', async (t) => {
+//   const testConnectionId = 'con_RuQniJyhsNJhzggX';
+//   const { authorizationClient, counter } = setupTest();
+//   const response = await authorizationClient.disableConnection(
+//     {
+//       connectionId: testConnectionId
+//     }
+//   );
+//   t.truthy(!response.enabled_clients.length);
+// });
 
 // Returns a new instance of AuthorizationClient and a counter counting the number of times getAccessToken is called.
 function setupTest() {
@@ -105,6 +105,7 @@ function setupTest() {
     clientSecret: getEnvironmentVariable('AUTH0_CLIENT_SECRET'),
     extensionUrl: getEnvironmentVariable('AUTH0_EXTENSION_URL'),
   };
+  console.log(config.domain, config.extensionUrl)
   const authorizationClient = new TestAuthorizationClient(config);
   return { authorizationClient, counter };
 }
