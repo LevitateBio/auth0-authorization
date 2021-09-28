@@ -53,6 +53,31 @@ test('AuthorizationClient.getGroups should get groups', async (t) => {
   t.truthy(response.groups);
 });
 
+test('AuthorizationClient.enableConnection should enable application for specified connection', async (t) => {
+  const socialConnectionId = 'con_Lw9iOCAIGq58rQxw';
+  const cadServerApplicationId = 'Cq9COiSt6vg4NPQe7Yp23L497oiJSvKD'
+  const { authorizationClient, counter } = setupTest();
+  const response = await authorizationClient.enableConnection(
+    {
+      connectionId: socialConnectionId,
+      applicationId: cadServerApplicationId
+    }
+  );
+  t.truthy(response.enabled_clients.length);
+});
+
+test('AuthorizationClient.disableConnection should disable all applications for specified connection', async (t) => {
+  const socialConnectionId = 'con_Lw9iOCAIGq58rQxw';
+  const cadServerApplicationId = 'Cq9COiSt6vg4NPQe7Yp23L497oiJSvKD'
+  const { authorizationClient, counter } = setupTest();
+  const response = await authorizationClient.disableConnection(
+    {
+      connectionId: socialConnectionId
+    }
+  );
+  t.truthy(!response.enabled_clients.length);
+});
+
 // Returns a new instance of AuthorizationClient and a counter counting the number of times getAccessToken is called.
 function setupTest() {
   const dummyAccessToken = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsImtpZCI6IlJFWXlNVEV3UWtFNVJrVTVNVVU1TXpaQ1JFRkdNMEl3UTBNM05EY3hNRFExUXpZd01USTJNZyJ9.eyJpc3MiOiJ4eHgiLCJzdWIiOiJ4eHgiLCJhdWQiOiJ4eHgiLCJpYXQiOjE1NTg1MDQ2NjMsImV4cCI6MTU1ODUwNDY2Mywibm9uY2UiOiJYWFgifQ.iPNiKdnMfuSz6GD83FfKqB2dMmvlrFtCjDiQ7pgN0Qpyk1XyO0z72ZMG88yH1OGZCGswdw-f8KRjOZ5lSLeiXfePjOYGkPT9izBjYJtzzOBAQ4mx936BwFK8NB204AhhqpTsC7JYsw4vm7r1EjUcN1fMmCSAqxOrPNmq0R9lOiN_aSkQdJlCcqTkUlEorufqjRr_uUbNKHHcx93PhFKezTAbiIOA910yUFbCiDLIYwTkmdbkFZSyeDA12Pl9ZFW9v61k3azmH9AhyDc6QKPLb92CX7k7ZKnJw0GQ5wf5j2wfxtYjRGz7CPNwNXPVUJu67w7HuBCDT8unI-rO7W2okA';

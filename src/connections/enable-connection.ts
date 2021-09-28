@@ -3,15 +3,16 @@ import { patch } from '../common/request';
 
 export interface Input {
   connectionId: string;
+  applicationId: string;
 }
 
-export function disableConnection(extensionUrl: string, accessToken: string) {
+export function enableConnection(extensionUrl: string, accessToken: string) {
   return (input: Input): Promise<IAuth0AuthorizationApiConnection> => {
     return patch({
       accessToken,
       url: `${extensionUrl}/connections/${input.connectionId}`,
       body: {
-        "enabled_clients": [""]
+        "enabled_clients": [`${input.applicationId}`]
       }
     });
   }

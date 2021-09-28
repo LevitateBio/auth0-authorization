@@ -42,4 +42,5 @@ export interface IAuth0AuthorizationApiConnection {
   name: string;
   display_name: string;
   id: string;
+  enabled_clients: string[];
 }

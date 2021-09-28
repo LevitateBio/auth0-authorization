@@ -43,6 +43,7 @@ import { calculateRoles, Input as ICalculateRolesInput } from '../users/calculat
 // Connections
 import { getConnections } from '../connections/get-connections';
 import { disableConnection, Input as IDisableConnectionInput } from '../connections/disable-connection';
+import { enableConnection, Input as IEnableConnectionInput } from '../connections/enable-connection';
 
 export class AuthorizationClient {
   private _options: IAuthorizationClientOptions;
@@ -210,6 +211,10 @@ export class AuthorizationClient {
 
   public async disableConnection(input: IDisableConnectionInput) {
     return disableConnection(this._options.extensionUrl, await this._getAccessToken())(input);
+  }
+
+  public async enableConnection(input: IEnableConnectionInput) {
+    return enableConnection(this._options.extensionUrl, await this._getAccessToken())(input);
   }
 
   // Return cached access token unless it does not exist or is expired.
