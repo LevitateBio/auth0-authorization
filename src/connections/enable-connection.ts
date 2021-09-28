@@ -8,6 +8,7 @@ export interface Input {
 
 export function enableConnection(extensionUrl: string, accessToken: string) {
   return (input: Input): Promise<IAuth0AuthorizationApiConnection> => {
+    console.log("!!!" + `${extensionUrl}/connections/${input.connectionId}`)
     return patch({
       accessToken,
       url: `${extensionUrl}/connections/${input.connectionId}`,
