@@ -241,14 +241,14 @@ export class AuthorizationClient {
       return _getAccessToken();
     }
     // Get new access token if it is expired
-    const tokenPayload = decode(this._accessToken) as {[key: string]: string };
-    const expirationSeconds = parseInt(tokenPayload.exp);
-    const nowSeconds = Date.now().valueOf() / 1000;
-    if (nowSeconds >= expirationSeconds) {
+    // const tokenPayload = decode(this._accessToken) as {[key: string]: string };
+    // const expirationSeconds = parseInt(tokenPayload.exp);
+    // const nowSeconds = Date.now().valueOf() / 1000;
+    // if (nowSeconds >= expirationSeconds) {
       return _getAccessToken();
-    }
+    // }
     // Use cached access token
-    return this._accessToken;
+    // return this._accessToken;
   }
 }
 
