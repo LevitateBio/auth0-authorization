@@ -54,25 +54,24 @@ test('AuthorizationClient.getGroups should get groups', async (t) => {
 });
 
 test('AuthorizationClient.enableConnection should enable application for specified connection', async (t) => {
-  const socialConnectionId = 'con_Lw9iOCAIGq58rQxw';
-  const cadServerApplicationId = 'Cq9COiSt6vg4NPQe7Yp23L497oiJSvKD'
+  const testConnectionId = 'con_RuQniJyhsNJhzggX';
+  const defaultAppId = 'ZEBLdpFpHXg55cejEFEKphF03fo9-zJ8'
   const { authorizationClient, counter } = setupTest();
   const response = await authorizationClient.enableConnection(
     {
-      connectionId: socialConnectionId,
-      applicationId: cadServerApplicationId
+      connectionId: testConnectionId,
+      applicationId: defaultAppId
     }
   );
   t.truthy(response.enabled_clients.length);
 });
 
 test('AuthorizationClient.disableConnection should disable all applications for specified connection', async (t) => {
-  const socialConnectionId = 'con_Lw9iOCAIGq58rQxw';
-  const cadServerApplicationId = 'Cq9COiSt6vg4NPQe7Yp23L497oiJSvKD'
+  const testConnectionId = 'con_RuQniJyhsNJhzggX';
   const { authorizationClient, counter } = setupTest();
   const response = await authorizationClient.disableConnection(
     {
-      connectionId: socialConnectionId
+      connectionId: testConnectionId
     }
   );
   t.truthy(!response.enabled_clients.length);
