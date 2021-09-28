@@ -12,7 +12,7 @@ export function enableConnection(extensionUrl: string, accessToken: string) {
       accessToken,
       url: `${extensionUrl}/connections/${input.connectionId}`,
       body: {
-        "enabled_clients": [`${input.applicationId}`]
+        "enabled_clients": [`"${input.applicationId}"`]
       }
     });
   }
