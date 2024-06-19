@@ -24,6 +24,7 @@
     "typescript": "3.2.2"
   },
   "scripts": {
+    "artifactregistry-login": "npx google-artifactregistry-auth",
     "prebuild": "rm -rf lib",
     "build": "tsc -p tsconfig.build.json --outDir lib",
     "build:watch": "tsc -p tsconfig.build.json --outDir lib -w",
