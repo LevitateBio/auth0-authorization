@@ -11,25 +11,24 @@ steps:
     image: node:10.15
     environment:
       AUTH0_DOMAIN:
-        from_secret: AUTH0_DOMAIN
+        from_secret: auth0_test_domain
       AUTH0_CLIENT_ID:
-        from_secret: AUTH0_API_CLIENT_ID
+        from_secret: auth0_test_client_id
       AUTH0_CLIENT_SECRET:
-        from_secret: AUTH0_API_CLIENT_SECRET
+        from_secret: auth0_test_client_secret
       AUTH0_EXTENSION_URL:
-        from_secret: AUTH0_AUTHORIZATION_EXTENSION_URL
+        from_secret: auth0_test_extension_url
     commands:
     - npm install
     - npm test
 
   - name: build + publish
     image: node:10.15
-    environment:
-      NPM_TOKEN:
-        from_secret: NPM_TOKEN
     commands:
     - npm run build
-    - echo //registry.npmjs.org/:_authToken=$NPM_TOKEN > .npmrc
+    - echo "@cyrus:registry=https://us-npm.pkg.dev/cyrus-containers/levitate-npm/" > .npmrc
+    - echo "//us-npm.pkg.dev/cyrus-containers/levitate-npm/:always-auth=true" >> .npmrc
+    - npm run artifactregistry-login
     - npm publish --access public
     when:
       branch:
