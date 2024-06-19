@@ -8,7 +8,7 @@ concurrency:
 
 steps:
   - name: test
-    image: node:10.15
+    image: node:18.20.3
     environment:
       AUTH0_DOMAIN:
         from_secret: auth0_test_domain
@@ -23,7 +23,7 @@ steps:
     - npm test
 
   - name: build + publish
-    image: node:10.15
+    image: node:18.20.3
     commands:
     - npm run build
     - echo "@cyrus:registry=https://us-npm.pkg.dev/cyrus-containers/levitate-npm/" > .npmrc
